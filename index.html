@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>DoguExpress</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+          <div class="logo">DoguExpress</div>
+        </marquee>
+      </div>
+      <div class="header-bottom">
+        <a href="#"
+          ><div class="left-section">DoguExpress</div>
+        </a>
+        <div class="middle-section">
+          <input type="text" placeholder="Ürün veya Kategori Ara" />
+        </div>
+        <div class="right-section">
+          <div class="currency-selector">
+            <label for="currency">Para Birimi:</label>
+            <select
+              id="currency"
+              onchange="changeCurrency()"
+              class="currencyBox"
+            >
+              <option value="TRY">TRY</option>
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="wishlist">İstek Listesi</div>
+          <div class="contact">İletişim</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <div class="main-container">
+      <div class="categories" id="categories">
+        <div class="category-header">
+          <div class="category-title">
+            <img
+              src="img/category.png"
+              alt="Kategoriler Fotoğrafı"
+              width="15"
+              height="15"
+            />Kategoriler
+            <hr />
+          </div>
+        </div>
+        <ul>
+          <li onclick="listProducts('Bilgisayar')">Bilgisayar</li>
+          <li onclick="listProducts('Sağlık')">Sağlık</li>
+          <li onclick="listProducts('Kadın Giyim')">Kadın Giyim</li>
+          <li onclick="listProducts('Erkek Giyim')">Erkek Giyim</li>
+          <li onclick="listProducts('Bebek')">Bebek</li>
+          <li onclick="listProducts('Elektronik')">Elektronik</li>
+          <li onclick="listProducts('Telefonlar')">Telefonlar</li>
+          <li onclick="listProducts('Parfüm')">Parfüm</li>
+          <li onclick="listProducts('Makyaj')">Makyaj</li>
+          <li onclick="listProducts('Saat')">Saat</li>
+        </ul>
+      </div>
+      <div class="product-list" id="product-list">
+        <!-- Her bir ürün buraya eklenecek -->
+      </div>
+    </div>
+
+    <!-- JavaScript Dosyasını Ekleyin -->
+    <script src="script.js"></script>
+  </body>
+</html>

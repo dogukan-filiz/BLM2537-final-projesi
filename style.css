@@ -1,0 +1,121 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header-top {
+    color: #ff0000;
+    background-color: #000;
+    text-align: right;
+    font-size: 14px;
+}
+
+.header-bottom {
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.left-section {
+    padding-left: 5px;
+}
+.middle-section input {
+    width: 300px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #6d0e0e;
+    border-radius: 15px;
+    outline: none;
+}
+.currencyBox {
+    border: 2px solid #6d0e0e;
+    border-radius: 15px;
+    outline: none;
+}
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.currency, .wishlist, .contact {
+    margin-left: 20px;
+}
+.contact {
+    padding-right: 10px;
+}
+
+.wishlist::before,
+.contact::before {
+    content: "|";
+    margin: 0 10px;
+    color: #fff;
+}
+
+.categories {
+    float: left;
+    width: 20%;
+    padding: 20px;
+    border: 2px solid #6d0e0e;
+    border-radius: 15px;
+    outline: none;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-title {
+    font-weight: bold;
+}
+
+.categories ul {
+    list-style: none;
+    padding: 0;
+}
+
+.categories li {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.main-container {
+    float: left;
+    width: 80%;
+    padding: 20px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-item div {
+    margin-bottom: 5px;
+}
