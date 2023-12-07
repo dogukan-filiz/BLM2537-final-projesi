@@ -16,7 +16,7 @@
       </div>
       <div class="header-bottom">
         <a href="#"
-          ><div class="left-section">DoguExpress</div>
+          ><img class="left-section" onclick="listAllProducts()" src="img/logo.png" style="height: 90px; width: 110px;">
         </a>
         <div class="middle-section">
           <input type="text" placeholder="Ürün veya Kategori Ara" />
@@ -33,7 +33,7 @@
               <option value="USD">USD</option>
             </select>
           </div>
-          <div class="wishlist">İstek Listesi</div>
+          <div class="cart">Alışveriş Sepeti</div>
           <div class="contact">İletişim</div>
         </div>
       </div>
@@ -53,16 +53,25 @@
             <hr />
           </div>
         </div>
-        <ul>
+        <ul class="category-contents">
           <li onclick="listProducts('Bilgisayar')">Bilgisayar</li>
+          <hr>
           <li onclick="listProducts('Sağlık')">Sağlık</li>
+          <hr>
           <li onclick="listProducts('Kadın Giyim')">Kadın Giyim</li>
+          <hr>
           <li onclick="listProducts('Erkek Giyim')">Erkek Giyim</li>
+          <hr>
           <li onclick="listProducts('Bebek')">Bebek</li>
+          <hr>
           <li onclick="listProducts('Elektronik')">Elektronik</li>
+          <hr>
           <li onclick="listProducts('Telefonlar')">Telefonlar</li>
+          <hr>
           <li onclick="listProducts('Parfüm')">Parfüm</li>
+          <hr>
           <li onclick="listProducts('Makyaj')">Makyaj</li>
+          <hr>
           <li onclick="listProducts('Saat')">Saat</li>
         </ul>
       </div>
