@@ -1,4 +1,3 @@
-// Basit bir ürün veri yapısı
 const products = {
     'Bilgisayar': [
         { name: 'Laptop', price: 21000, image: 'img/laptop.png' },
@@ -32,7 +31,6 @@ const products = {
     ],
 };
 
-// Sayfa yüklenirken her kategoriden birer ürün listele
 document.addEventListener('DOMContentLoaded', function() {
     for (const category in products) {
         const categoryProducts = products[category];
@@ -47,11 +45,9 @@ function listProducts(category) {
     const productList = products[category];
     const productContainer = document.getElementById("product-list");
 
-    // Ürün listesini temizle
     productContainer.innerHTML = '';
 
     if (productList) {
-        // Her ürünü listeye ekle
         productList.forEach(product => {
             appendProduct(category, product);
         });
@@ -62,10 +58,8 @@ function listProducts(category) {
 function listAllProducts() {
     const productContainer = document.getElementById("product-list");
 
-    // Ürün listesini temizle
     productContainer.innerHTML = '';
 
-    // Tüm kategorilerden birer ürün listele
     for (const category in products) {
         const categoryProducts = products[category];
         if (categoryProducts.length > 0) {
@@ -79,32 +73,27 @@ function appendProduct(category, product) {
 
     const productItem = document.createElement("div");
     productItem.classList.add("product-item");
+    productItem.setAttribute("data-product", product.name);
 
     const productImage = document.createElement("img");
     productImage.src = product.image;
     productItem.appendChild(productImage);
 
-    const productInfo = document.createElement("div");
-    productInfo.classList.add("product-info");
-
     const productName = document.createElement("h3");
     productName.textContent = product.name;
-    productInfo.appendChild(productName);
+    productItem.appendChild(productName);
 
     const productPrice = document.createElement("h4");
     productPrice.textContent = product.price + " ₺";
-    productInfo.appendChild(productPrice);
+    productItem.appendChild(productPrice);
 
     const addToCart = document.createElement("button");
     addToCart.textContent = "Sepete Ekle";
     addToCart.addEventListener("click", function() {
-        // Sepete ekleme işlemleri burada yapılabilir.
-        // Örneğin: addToCartFunction(product);
+        // Sepete ekleme işlemleri burada yapılacak. addToCart() fonksiyonu.
         console.log("Sepete Eklendi: " + product.name);
     });
-    productPrice.appendChild(addToCart);
-
-    productItem.appendChild(productInfo);
+    productItem.appendChild(addToCart);
 
     productContainer.appendChild(productItem);
 }
@@ -112,5 +101,24 @@ function changeCurrency() {
     const currencySelector = document.getElementById("currency");
     const selectedCurrency = currencySelector.value;
 
-    console.log("Seçilen Para Birimi: " + selectedCurrency);
+    for (const category in products) {
+        const categoryProducts = products[category];
+        categoryProducts.forEach(product => {
+            const productPriceElement = document.querySelector(`.product-item[data-product="${product.name}"] h4`);
+            if (productPriceElement) {
+                productPriceElement.textContent = convertCurrency(product.price, selectedCurrency) + " " + selectedCurrency;
+            }
+        });
+    }
 }
+
+function convertCurrency(price, currency) {
+    const exchangeRates = {
+        'TRY': 1,
+        'USD': 0.0345, // 1 USD = 28.98 TRY
+    };
+
+    const convertedPrice = price * exchangeRates[currency];
+    return convertedPrice.toFixed(2);
+}
+
