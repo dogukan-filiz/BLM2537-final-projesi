@@ -12,7 +12,7 @@ body {
 }
 
 .header-bottom {
-    background-color: grey;
+    background-color: rgb(153, 150, 150);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -171,9 +171,14 @@ body {
 }
 
 .product-item h4 {
-    text-align: left;
-    padding-left: 20px;
+    text-align: center;
 }
 .product-item h4 button{
     margin-top: -30px;
 }
+
+.product-item h3 {
+    text-align: center;
+    background-color: #ddd;
+}
+

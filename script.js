@@ -67,6 +67,7 @@ function listAllProducts() {
             appendProduct(category, firstProduct);
         }
     }
+    changeCurrency()
 }
 function appendProduct(category, product) {
     const productContainer = document.getElementById("product-list");
@@ -84,7 +85,7 @@ function appendProduct(category, product) {
     productItem.appendChild(productName);
 
     const productPrice = document.createElement("h4");
-    productPrice.textContent = product.price + " ₺";
+    productPrice.textContent = product.price.toFixed(2) + " TRY";
     productItem.appendChild(productPrice);
 
     const addToCart = document.createElement("button");
@@ -122,3 +123,23 @@ function convertCurrency(price, currency) {
     return convertedPrice.toFixed(2);
 }
 
+const searchInput = document.querySelector('.middle-section input');
+
+searchInput.addEventListener('input', function() {
+    const searchText = this.value.toLowerCase();
+
+    for (const category in products) {
+        const categoryProducts = products[category];
+
+        categoryProducts.forEach(product => {
+            const productName = product.name.toLowerCase();
+            const productItem = document.querySelector(`.product-item[data-product="${product.name}"]`);
+
+            if (productName.includes(searchText)) {
+                productItem.style.display = 'block';
+            } else {
+                productItem.style.display = 'none';
+            }
+        });
+    }
+});
