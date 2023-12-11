@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Laptop Ürün Sayfası</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+          <div class="logo">DoguExpress</div>
+        </marquee>
+      </div>
+      <div class="header-bottom">
+        <a href="../../index.html"
+          ><img
+            class="left-section"
+            src="../../img/logo.png"
+            style="height: 90px; width: 110px"
+        /></a>
+        <div class="middle-section">
+          <input type="text" placeholder="Ürün Ara" />
+        </div>
+        <div class="right-section">
+          <div class="currency-selector">
+            <label for="currency">Para Birimi:</label>
+            <select
+              id="currency"
+              onchange="changeCurrency()"
+              class="currencyBox"
+            >
+              <option value="TRY">TRY</option>
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="cart">Alışveriş Sepeti</div>
+          <div class="contact">İletişim</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="product-details">
+      <div class="product-image">
+        <img src="../../img/laptop.png" alt="Laptop" />
+      </div>
+      <div class="product-info">
+        <h1>Tulpar T6 V1.1.1 16" Oyun Bilgisayarı</h1>
+        <p
+          class="price"
+          id="price"
+          style="
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+              sans-serif;
+          "
+        >
+          <b>21000.00 TRY</b>
+        </p>
+        <button onclick="addToCart('Laptop')">Sepete Ekle</button>
+        <p class="description">
+            <h4>Güçlü Performans ile Sınırları Zorlayın:</h4> <br> 
+            Tulpar T6 V1.1.1 16" Oyun
+            Bilgisayarı, yüksek performansıyla oyun dünyasında sizi zirveye
+            taşıyor. İleri düzey işlemci ve ekran kartıyla her tür oyun ve iş
+            uygulamasında sorunsuz bir deneyim sunar. <br>
+            <h4>Şık ve Taşınabilir Tasarım:</h4> <br>
+            Zarif ve ince tasarımıyla öne çıkan bu laptop, taşıma kolaylığı
+            sağlar. İster ofiste ister kafede, hafif yapısı ve şık görünümüyle her
+            ortama uyum sağlar. <br>
+            <h4>Net ve Canlı Ekran:</h4> <br>
+            16 inçlik geniş ekranı, canlı
+            renkleri ve net çözünürlüğü ile görsel bir şölen sunar. Hem oyunları
+            hem de içerikleri daha önce hiç olmadığı gibi net ve canlı bir şekilde
+            deneyimleyin. <br>
+            <h4>Hızlı ve Etkili Soğutma Sistemi:</h4> <br>
+            Yoğun kullanımda bile serin kalın. Gelişmiş soğutma sistemi ile laptopunuzun performansını
+            koruyun. Uzun süreli kullanımlarda bile aşırı ısınma sorunu yaşamayın. <br>
+            <h4>Gelişmiş Bağlantı Seçenekleri:</h4> <br>
+            Çeşitli bağlantı noktaları ile diğer
+            cihazlarınızı kolayca bağlayın. Yüksek hızlı veri transferi için USB-C
+            ve diğer bağlantı seçenekleri ile daha fazla özgürlük ve bağlantı
+            imkanları elde edin.
+          </p>
+      </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 DoguExpress. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

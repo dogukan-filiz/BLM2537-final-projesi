@@ -1,0 +1,145 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header-top {
+    color: #ff0000;
+    background-color: #000;
+    text-align: right;
+    font-size: 14px;
+}
+
+.header-bottom {
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid black;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.left-section {
+    padding-left: 5px;
+}
+
+.middle-section input {
+    width: 450px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 2px solid black;
+    border-radius: 20%;
+    outline: none;
+}
+
+.currencyBox {
+    border: 2px solid black;
+    border-radius: 15%;
+    outline: none;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 13px;
+    border: 1px solid black;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: black;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+}
+
+.currency,
+.cart,
+.contact {
+    margin-left: 20px;
+}
+
+.contact {
+    padding-right: 10px;
+}
+
+.cart::before,
+.contact::before {
+    content: "|";
+    margin: 0 10px;
+    color: #fff;
+}
+
+.product-details {
+    display: flex;
+    margin: 20px;
+}
+
+.product-image img {
+    width: inherit;
+    height: inherit;
+}
+.product-image{
+    width: 800px;
+    height: 600px;
+}
+.product-info {
+    max-width: 40%;
+}
+
+.product-info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 20px;
+    font-size: large;
+    display: inherit;
+}
+
+button {
+    background-color: black;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    color: darkgrey;
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+

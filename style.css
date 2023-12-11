@@ -2,6 +2,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: white;
 }
 
 .header-top {
@@ -70,7 +71,6 @@ body {
 .categories {
     float: left;
     width: 15%;
-    height: 440px;
     padding: 15px;
     margin-top: 20px;
     margin-left: 20px;
@@ -121,6 +121,7 @@ body {
 .main-container {
     float: left;
     width: 95%;
+    margin-top: 50px;
 }
 
 .product-list {
@@ -132,18 +133,10 @@ body {
 }
 
 .product-item {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: 1px solid black;
+    padding: 20px;
     border-radius: 15px;
     text-align: center;
-}
-
-.product-item img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid white;
-    border-radius: 5px;
-    margin-bottom: 10px;
 }
 
 .product-item div {
@@ -151,7 +144,7 @@ body {
 }
 
 .product-item img {
-    width: 150px;
+    width: 140px;
     height: 100px;
 }
 
@@ -179,6 +172,23 @@ body {
 
 .product-item h3 {
     text-align: center;
-    background-color: #ddd;
 }
 
+footer {
+    margin-top: 50px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 103%;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+}
