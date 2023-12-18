@@ -1,0 +1,41 @@
+.cart::before{
+    content: "";
+}
+
+.contact:hover {
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+.cart-item span{
+    margin: 0 40px;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.total-price {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}

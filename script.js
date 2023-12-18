@@ -4,7 +4,7 @@ const products = {
   "Kadın Giyim": [{ name: "Elbise", price: 900, image: "img/elbise.png" }],
   "Erkek Giyim": [{ name: "Gömlek", price: 700, image: "img/gomlek.png" }],
   Bebek: [{ name: "Bebek Bezi", price: 240, image: "img/bebek-bezi.png" }],
-  Elektronik: [{ name: "Kamera", price: 160000, image: "img/kamera.png" }],
+  Elektronik: [{ name: "Kamera", price: 16000, image: "img/kamera.png" }],
   Telefonlar: [
     { name: "Akıllı Telefon", price: 54000, image: "img/akilli-telefon.png" },
   ],
@@ -15,9 +15,15 @@ const products = {
   Saat: [{ name: "Erkek Saati", price: 5600, image: "img/erkek-saat.png" }],
 };
 
+let shoppingCart = [];
+
+window.addEventListener("unload", function () {
+  localStorage.removeItem("shoppingCart");
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   listAllProducts();
-
+  updateCartCount();
   const productItems = document.querySelectorAll(".product-item");
   if (productItems) {
     productItems.forEach(function (productItem) {
@@ -31,14 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  var productGrid = document.getElementById("route");
-  productGrid.addEventListener("click", function () {
-    var productName = productGrid.dataset.product;
+  const productContainer = document.getElementById("product-list");
 
-    var targetSiteURL =
-      "product-sites/" + productName + "/" + productName + ".html";
+  productContainer.addEventListener("click", function (event) {
+    const clickedElement = event.target;
 
-    window.location.href = targetSiteURL;
+    if (clickedElement.classList.contains("route")) {
+      const productName = clickedElement.dataset.product;
+      const targetSiteURL =
+        "product-sites/" + productName + "/" + productName + ".html";
+      window.location.href = targetSiteURL;
+    }
   });
 });
 
@@ -78,25 +87,34 @@ function appendProduct(category, product) {
 
   const productItem = document.createElement("div");
   productItem.classList.add("product-item");
-  productItem.id = "route";
   productItem.setAttribute("data-product", product.name);
 
   const productImage = document.createElement("img");
   productImage.src = product.image;
+  productImage.setAttribute("data-product", product.name);
+  productImage.classList.add("route");
   productItem.appendChild(productImage);
 
   const productName = document.createElement("h3");
   productName.textContent = product.name;
+  productName.setAttribute("data-product", product.name);
+  productName.classList.add("route");
   productItem.appendChild(productName);
 
   const productPrice = document.createElement("h4");
   productPrice.textContent = product.price.toFixed(2) + " TRY";
+  productPrice.setAttribute("data-product", product.name);
+  productPrice.classList.add("route");
   productItem.appendChild(productPrice);
 
   const addToCart = document.createElement("button");
   addToCart.textContent = "Sepete Ekle";
   addToCart.addEventListener("click", function () {
-    // Sepete ekleme işlemleri burada yapılacak. addToCart() fonksiyonu.
+    cartToAdd({
+      name: product.name,
+      price: product.price,
+      img: "../../" + product.image,
+    });
     console.log("Sepete Eklendi: " + product.name);
   });
   productItem.appendChild(addToCart);
@@ -155,3 +173,39 @@ searchInput.addEventListener("input", function () {
     });
   }
 });
+
+function cartToAdd(product, event) {
+  var notification = document.getElementById("modal");
+  notification.style.display = "block";
+  notification.addEventListener("animationend", function () {
+    notification.style.display = "none";
+  });
+
+  const existingProduct = shoppingCart.find(
+    (item) => item.name === product.name
+  );
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+  } else {
+    shoppingCart.push({ ...product, quantity: 1 });
+  }
+  localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const cartContent = localStorage.getItem("shoppingCart");
+  const cartItems = cartContent ? JSON.parse(cartContent) : {};
+  const cartCountElement = document.querySelector(".cart");
+  let lengthOfItems = 0;
+  for (var i = 0; i < cartItems.length; i++) {
+    lengthOfItems += cartItems[i].quantity;
+  }
+  if (cartCountElement) {
+    if (lengthOfItems) {
+      cartCountElement.innerHTML = `<a href="other-pages/cart/cart.html" target="_blank">Alışveriş Sepeti (${lengthOfItems})</a>`;
+    } else {
+      cartCountElement.innerHTML = `<a href="other-pages/cart/cart.html" target="_blank">Alışveriş Sepeti</a>`;
+    }
+  }
+}
