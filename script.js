@@ -53,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function listProducts(category) {
   const productList = products[category];
-
+  const productContainer = (document.getElementById("product-list").innerHTML =
+  "");
   if (productList) {
     productList.forEach((product) => {
       appendProduct(category, product);
@@ -63,6 +64,7 @@ function listProducts(category) {
       `Ürünler (${category}): Bu kategoriye ait ürün bulunmamaktadır.`
     );
   }
+  changeCurrency();
 }
 
 function listAllProducts() {
