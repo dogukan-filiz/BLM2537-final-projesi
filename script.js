@@ -53,8 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function listProducts(category) {
   const productList = products[category];
-  const productContainer = (document.getElementById("product-list").innerHTML =
-    "");
 
   if (productList) {
     productList.forEach((product) => {
@@ -79,7 +77,6 @@ function listAllProducts() {
       appendProduct(category, firstProduct);
     }
   }
-  changeCurrency();
 }
 
 function appendProduct(category, product) {
@@ -110,34 +107,44 @@ function appendProduct(category, product) {
   const addToCart = document.createElement("button");
   addToCart.textContent = "Sepete Ekle";
   addToCart.addEventListener("click", function () {
+    const currencySelector = document.getElementById("currency");
+    const selectedCurrency = currencySelector.value;
     cartToAdd({
       name: product.name,
-      price: product.price,
+      price: Number(convertCurrency(product.price, selectedCurrency)),
       img: "../../" + product.image,
+      currency: selectedCurrency,
     });
-    console.log("Sepete Eklendi: " + product.name);
+    localStorage.setItem("cartUpdated", "true");
   });
   productItem.appendChild(addToCart);
 
   productContainer.appendChild(productItem);
 }
 function changeCurrency() {
+  const shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
   const currencySelector = document.getElementById("currency");
   const selectedCurrency = currencySelector.value;
-
-  for (const category in products) {
-    const categoryProducts = products[category];
-    categoryProducts.forEach((product) => {
-      const productPriceElement = document.querySelector(
-        `.product-item[data-product="${product.name}"] h4`
-      );
-      if (productPriceElement) {
-        productPriceElement.textContent =
-          convertCurrency(product.price, selectedCurrency) +
-          " " +
-          selectedCurrency;
-      }
-    });
+  if (shoppingCart.length > 0) {
+    alert(
+      "Sepetinizde ürün bulunmaktadır. Currency seçimini değiştiremezsiniz."
+    );
+    currencySelector.value = shoppingCart[0].currency;
+  } else {
+    for (const category in products) {
+      const categoryProducts = products[category];
+      categoryProducts.forEach((product) => {
+        const productPriceElement = document.querySelector(
+          `.product-item[data-product="${product.name}"] h4`
+        );
+        if (productPriceElement) {
+          productPriceElement.textContent =
+            convertCurrency(product.price, selectedCurrency) +
+            " " +
+            selectedCurrency;
+        }
+      });
+    }
   }
 }
 

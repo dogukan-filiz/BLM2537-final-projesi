@@ -2,6 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
   showCartItems();
   updateCartCount();
 });
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'visible') {
+    const cartUpdated = localStorage.getItem('cartUpdated');
+
+    if (cartUpdated === 'true') {
+        location.reload();
+        localStorage.removeItem('cartUpdated');
+    }
+  }
+});
 
 function showCartItems() {
   const cartContent = localStorage.getItem("shoppingCart");
@@ -25,7 +35,7 @@ function showCartItems() {
       itemElement.appendChild(itemName);
 
       const itemPrice = document.createElement("span");
-      itemPrice.textContent = item.price * item.quantity + " TRY";
+      itemPrice.textContent = item.price * item.quantity + " " + item.currency;
       itemElement.appendChild(itemPrice);
 
       cartItemsContainer.appendChild(itemElement);
@@ -40,7 +50,8 @@ function showCartItems() {
     (total, item) => (total + item.price) * item.quantity,
     0
   );
-  totalPriceContainer.textContent = "Toplam Tutar: " + totalPrice + " TRY";
+
+  totalPriceContainer.textContent = "Toplam Tutar: " + totalPrice.toFixed(2) + " " + cartItemsData[0].currency.toString();
 }
 
 function updateCartCount() {
