@@ -16,6 +16,7 @@ const products = {
 };
 
 let shoppingCart = [];
+const apiUrl = "https://api.exchangerate-api.com/v4/latest/TRY";
 
 window.addEventListener("unload", function () {
   localStorage.removeItem("shoppingCart");
@@ -24,6 +25,17 @@ window.addEventListener("unload", function () {
 document.addEventListener("DOMContentLoaded", function () {
   listAllProducts();
   updateCartCount();
+
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem("exchangeRates", JSON.stringify(data.rates));
+      localStorage.setItem("baseCurrency", JSON.stringify(data.base));
+    })
+    .catch((error) => {
+      console.error("Döviz kuru alınırken bir hata oluştu:", error);
+    });
+
   const productItems = document.querySelectorAll(".product-item");
   if (productItems) {
     productItems.forEach(function (productItem) {
@@ -54,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function listProducts(category) {
   const productList = products[category];
   const productContainer = (document.getElementById("product-list").innerHTML =
-  "");
+    "");
   if (productList) {
     productList.forEach((product) => {
       appendProduct(category, product);
@@ -101,7 +113,9 @@ function appendProduct(category, product) {
   productItem.appendChild(productName);
 
   const productPrice = document.createElement("h4");
-  productPrice.textContent = product.price.toFixed(2) + " TRY";
+  productPrice.textContent =
+    product.price.toFixed(2) +
+    localStorage.getItem("baseCurrency").replace(/"/g, " ");
   productPrice.setAttribute("data-product", product.name);
   productPrice.classList.add("route");
   productItem.appendChild(productPrice);
@@ -129,7 +143,7 @@ function changeCurrency() {
   const selectedCurrency = currencySelector.value;
   if (shoppingCart.length > 0) {
     alert(
-      "Sepetinizde ürün bulunmaktadır. Currency seçimini değiştiremezsiniz."
+      `Sepetinizde ürün bulunmaktadır. Para biriminizi ${selectedCurrency}'ye dönüştüremezsiniz.`
     );
     currencySelector.value = shoppingCart[0].currency;
   } else {
@@ -151,11 +165,7 @@ function changeCurrency() {
 }
 
 function convertCurrency(price, currency) {
-  const exchangeRates = {
-    TRY: 1,
-    USD: 0.0345, // 1 USD = 28.98 TRY
-  };
-
+  const exchangeRates = JSON.parse(localStorage.getItem("exchangeRates"));
   const convertedPrice = price * exchangeRates[currency];
   return convertedPrice.toFixed(2);
 }

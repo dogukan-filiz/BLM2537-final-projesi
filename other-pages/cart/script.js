@@ -35,7 +35,7 @@ function showCartItems() {
       itemElement.appendChild(itemName);
 
       const itemPrice = document.createElement("span");
-      itemPrice.textContent = item.price * item.quantity + " " + item.currency;
+      itemPrice.textContent = (item.price * item.quantity).toFixed(2) + " " + item.currency;
       itemElement.appendChild(itemPrice);
 
       cartItemsContainer.appendChild(itemElement);
