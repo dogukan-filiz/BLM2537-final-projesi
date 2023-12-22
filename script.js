@@ -23,9 +23,6 @@ window.addEventListener("unload", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  listAllProducts();
-  updateCartCount();
-
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -48,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+  listAllProducts();
+  updateCartCount();
 
   const productContainer = document.getElementById("product-list");
 
